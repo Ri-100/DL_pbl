@@ -1,3 +1,4 @@
+pysqlite3-binary
 streamlit==0.80.0
 protobuf>=3.20.3,<4.21.0
 tensorflow==2.18.0
@@ -14,4 +15,3 @@ tzlocal>=1.1
 validators>=0.18.2
 gitpython>=3.1.0
 watchdog>=0.10.0
-pysqlite3==0.4.6
