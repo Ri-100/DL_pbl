@@ -1,5 +1,3 @@
-tensorflow
-pysqlite3
 pysqlite3-binary
 streamlit==0.80.0
 tensorflow==2.18.0
