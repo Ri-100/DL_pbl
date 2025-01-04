@@ -15,3 +15,4 @@ tzlocal>=1.1
 validators>=0.18.2
 gitpython>=3.1.0
 watchdog>=0.10.0
+ultralytics==8.0.0
