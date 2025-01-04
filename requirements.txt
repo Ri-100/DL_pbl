@@ -10,7 +10,7 @@ pydeck>=0.1.dev5
 python-dateutil>=2.7.3
 requests>=2.0
 toml>=0.10.2
-tornado>=5.0
+tornado==6.2
 tzlocal>=1.1
 validators>=0.18.2
 gitpython>=3.1.0
