@@ -100,7 +100,7 @@ def main():
             st.image(image, caption='Uploaded Image', use_column_width=True)
             
             # Dropdown menu to select the model
-            image_model_type = st.selectbox("Select Model", ["CNN Model", "RestNet50 Model"])
+            image_model_type = st.selectbox("Select Model", ["RestNet50 Model"])
             
             # Preprocess the image
             preprocessed_image = preprocess_image(image, image_model_type)
