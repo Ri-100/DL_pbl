@@ -7,7 +7,7 @@ import streamlit as st
 from PIL import Image
 from tensorflow.keras.models import load_model
 from tempfile import NamedTemporaryFile
-from ultralytics import YOLO
+#from ultralytics import YOLO
 import os
 import glob
 import cv2
@@ -27,9 +27,9 @@ def preprocess_image(image, model_type):
 @st.cache(allow_output_mutation=True)
 def load_pretrained_model(model_type):
     if model_type == "CNN Model":
-        return load_model(r'first_model.hdf5')
-    else:
-        return load_model(r'second_model.hdf5')
+         return load_model(r'second_model.hdf5')
+    
+       
 
 # Function to get the class name from the predicted index
 def get_class_name(index):
@@ -38,21 +38,21 @@ def get_class_name(index):
     return class_names[index]
 
 # Function to get the latest video file in the output directory
-def get_latest_detected_video():
-    # Specify the directory where the detected videos are stored
-    detection_dir = r'runs\detect'
-    # Use glob to find all directories with name starting with 'predict'
-    detection_dirs = glob.glob(os.path.join(detection_dir, 'predict*'))
-    # Sort the directories based on their creation time
-    detection_dirs.sort(key=os.path.getmtime, reverse=True)
-    # Get the latest directory
-    latest_dir = detection_dirs[0] if detection_dirs else None
-    # Get the path of the detected video within the latest directory
-    detected_video_path = None
-    if latest_dir:
-        video_files = glob.glob(os.path.join(latest_dir, '*.avi'))
-        detected_video_path = video_files[0] if video_files else None
-    return detected_video_path
+# def get_latest_detected_video():
+#     # Specify the directory where the detected videos are stored
+#     detection_dir = r'runs\detect'
+#     # Use glob to find all directories with name starting with 'predict'
+#     detection_dirs = glob.glob(os.path.join(detection_dir, 'predict*'))
+#     # Sort the directories based on their creation time
+#     detection_dirs.sort(key=os.path.getmtime, reverse=True)
+#     # Get the latest directory
+#     latest_dir = detection_dirs[0] if detection_dirs else None
+#     # Get the path of the detected video within the latest directory
+#     detected_video_path = None
+#     if latest_dir:
+#         video_files = glob.glob(os.path.join(latest_dir, '*.avi'))
+#         detected_video_path = video_files[0] if video_files else None
+#     return detected_video_path
 
 # Main function to run the Streamlit app
 def main():
@@ -64,41 +64,41 @@ def main():
     # If an image or video is uploaded, display it and allow prediction
     if uploaded_file is not None:
         # Check if the uploaded file is a video
-        if uploaded_file.type == 'video/mp4':
-            # Display the uploaded video
-            st.video(uploaded_file)
+        # if uploaded_file.type == 'video/mp4':
+        #     # Display the uploaded video
+        #     st.video(uploaded_file)
             
-            # Dropdown menu to select the model
-            video_model_type = st.selectbox("Select Model", ["YOLOv8 Model", "YOLOv9 Model"])
+        #     # Dropdown menu to select the model
+        #     video_model_type = st.selectbox("Select Model", ["YOLOv8 Model", "YOLOv9 Model"])
             
-            # Button for making detection on the video
-            if st.button("Detect on Video"):
-                # Save the video to a temporary file
-                with NamedTemporaryFile(delete=False, suffix='.mp4') as temp_file:
-                    temp_file.write(uploaded_file.read())
-                    video_path = temp_file.name
-                    print("Video path:", video_path)  # Debugging line
+        #     # Button for making detection on the video
+        #     if st.button("Detect on Video"):
+        #         # Save the video to a temporary file
+        #         with NamedTemporaryFile(delete=False, suffix='.mp4') as temp_file:
+        #             temp_file.write(uploaded_file.read())
+        #             video_path = temp_file.name
+        #             print("Video path:", video_path)  # Debugging line
                 
-                # Load the selected model
-                if video_model_type == "YOLOv8 Model":
-                    yolo_model = YOLO(r'yoloV8_on_fire.ipynb')
-                else:  # YOLOv9 Model
-                    yolo_model = YOLO(r'yoloV9.ipynb')
+        #         # Load the selected model
+        #         if video_model_type == "YOLOv8 Model":
+        #             yolo_model = YOLO(r'yoloV8_on_fire.ipynb')
+        #         else:  # YOLOv9 Model
+        #             yolo_model = YOLO(r'yoloV9.ipynb')
                 
-                # Perform detection on the video
-                yolo_model.predict(source=video_path, imgsz=640, conf=0.20, save=True)
+        #         # Perform detection on the video
+        #         yolo_model.predict(source=video_path, imgsz=640, conf=0.20, save=True)
                 
-                # Get the path of the detected video
-                detected_video_path = get_latest_detected_video()
+        #         # Get the path of the detected video
+        #         detected_video_path = get_latest_detected_video()
                 
-                # Display the detected video path
-                if detected_video_path:
-                    st.write("Detected video saved at:", detected_video_path)
-                else:
-                    st.write("No detected video found.")
+        #         # Display the detected video path
+        #         if detected_video_path:
+        #             st.write("Detected video saved at:", detected_video_path)
+        #         else:
+        #             st.write("No detected video found.")
         
         # If an image is uploaded
-        else:
+    
             # Display the uploaded image
             image = Image.open(uploaded_file)
             st.image(image, caption='Uploaded Image', use_column_width=True)
