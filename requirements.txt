@@ -1,8 +1,9 @@
+streamlit
+tensorflow
+numpy
+pillow
+opencv-python
+ultralytics
 pysqlite3-binary
-numpy==1.23.5
-pillow==9.5.0
-streamlit==1.41.0
-tensorflow==2.12.0
-ultralytics==8.0.20
-glob2==0.7
-
+h5py
+pyyaml
