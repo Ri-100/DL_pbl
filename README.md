@@ -12,8 +12,7 @@ The Wildfire Detection System is a real-time deep learning solution designed to 
 - **Scalable and Flexible:** Supports large-scale datasets and real-time deployment.  
 - **Data Augmentation:** Improves model generalization using techniques like rotation, scaling, and flipping.  
 
-## Demo  
-Explore the project on GitHub: [Wildfire Detection System](https://github.com/Ri-100/DL_pbl).  
+
 
 ## Tech Stack  
 - **Programming Languages:** Python  
